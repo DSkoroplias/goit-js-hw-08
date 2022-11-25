@@ -37,10 +37,10 @@ function fillTextarea() {
   const savedDataJSON = localStorage.getItem(LOCALSTORAGE_KEY);
 
   if (!savedDataJSON) return;
-  const saveData = JSON.parse(savedDataJSON);
-  const keys = Object.keys(saveData);
+  formData = JSON.parse(savedDataJSON);
+  const keys = Object.keys(formData);
   for (let key of keys) {
-    refs.form.elements[key].value = saveData[key];
+    refs.form.elements[key].value = formData[key];
   }
 }
 
