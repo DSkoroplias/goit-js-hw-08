@@ -14,6 +14,8 @@ const refs = {
 refs.form.addEventListener('submit', onFormSubmit);
 refs.form.addEventListener('input', throttle(onTextareaInput, 500));
 
+fillTextarea();
+
 function onTextareaInput(evt) {
   formData[evt.target.name] = evt.target.value;
   localStorage.setItem(LOCALSTORAGE_KEY, JSON.stringify(formData));
@@ -37,11 +39,9 @@ function fillTextarea() {
   const savedDataJSON = localStorage.getItem(LOCALSTORAGE_KEY);
 
   if (!savedDataJSON) return;
-  formData = JSON.parse(savedDataJSON);
+  const formData = JSON.parse(savedDataJSON);
   const keys = Object.keys(formData);
   for (let key of keys) {
     refs.form.elements[key].value = formData[key];
   }
 }
-
-fillTextarea();
